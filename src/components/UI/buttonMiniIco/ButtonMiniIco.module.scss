@@ -1,0 +1,35 @@
+.button {
+  position: relative;
+  padding: 3px;
+  margin-right: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background: rgba(0, 0, 0, .1);
+  }
+  svg {
+    transform: scale(.9);
+  }
+  &:hover &_info {
+    display: inline-block;
+    visibility: visible;
+    transition: all 0s linear 800ms;
+  }
+  &_info {
+    position: absolute;
+    padding: 5px;
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+    bottom: calc(100% + 5px);
+    font-size: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: rgb(0, 0, 0);
+    visibility: hidden;
+    transition: all 0s linear 0s;
+  }
+}

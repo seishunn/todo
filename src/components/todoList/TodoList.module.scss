@@ -1,0 +1,41 @@
+.todoList {
+  padding: 36px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 38px;
+  padding-bottom: 2px;
+
+  .title {
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+    padding-bottom: 8px;
+    width: 100%;
+  }
+
+  .addTodo {
+    padding: 10px 20px 0 1px;
+    cursor: pointer;
+    display: flex;
+
+    &:hover {
+      span {
+        color: #dd4b39;
+      }
+    }
+    svg {
+      color: orange;
+      margin-right: 10px;
+    }
+
+    span {
+      display: inline-block;
+      color: #555;
+      font-size: 14px;
+      white-space: nowrap;
+      width: 100%;
+    }
+  }
+}

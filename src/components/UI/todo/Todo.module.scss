@@ -1,0 +1,39 @@
+.todo {
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+
+  &:hover &_mode {
+    visibility: visible;
+  }
+
+  input {
+    align-self: start;
+    border: 1px solid grey;
+    color: grey;
+    flex: 0 0 10px;
+    min-width: 16px;
+    min-height: 16px;
+    overflow: hidden;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 8px 6px 0 -3px;
+  }
+  &_value {
+    overflow: hidden;
+    word-wrap: break-word;
+    flex: 1 1 auto;
+    padding: 8px 0;
+    margin-right: 30px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  &_mode {
+    align-self: start;
+    margin-top: 8px;
+    display: flex;
+    visibility: hidden;
+  }
+}

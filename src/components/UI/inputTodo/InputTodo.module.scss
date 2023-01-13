@@ -1,0 +1,23 @@
+.inputTodo {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px 10px 0;
+  cursor: text;
+  width: 100%;
+
+  &_editor {
+    max-height: 100px;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    font-size: 14px;
+
+    textarea {
+      width: 100%;
+      word-wrap: break-word;
+      word-break: break-word;
+    }
+  }
+  &_footer {
+    padding-bottom: 10px;
+  }
+}
