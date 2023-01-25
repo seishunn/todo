@@ -26,7 +26,8 @@ class todoController {
         try {
             const {todoListId} = req.query;
             const {id} = req.user;
-            await db.promise().query(`DELETE FROM todo_list WHERE id=${todoListId} AND user_id=${id}`)
+            await db.promise().query(`DELETE FROM todo_list WHERE id=${todoListId} AND user_id=${id}`);
+            await db.promise().query(`DELETE FROM todo WHERE todo_list_id=${todoListId}`);
             res.status(200).json({message: 'todoList was deleted'});
         } catch (err) {
             res.json({
