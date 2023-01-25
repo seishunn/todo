@@ -1,56 +1,57 @@
 import React, {useState} from 'react';
 import cl from './TodoList.module.scss'
-import Todo, {ITodo} from "../UI/todo/Todo";
+import TodoItem from "../UI/todo/TodoItem";
 import {IconsSvg} from "../../assets/icons/Icons";
 import InputTodo from "../UI/inputTodo/InputTodo";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {addTodoInList, deleteTodoFromList} from "../../actions/todo";
 
 const TodoList = () => {
-    const [todoList, setTodoList] = useState<ITodo[]>([
-        {id: 0, description: "Hello, React", comment: "Sub"},
-        {id: 1, description: "Hello, React", comment: "Sub"},
-        {id: 2, description: "Hello, React", comment: "Sub"},
-        {id: 3, description: "Hello, React", comment: "Sub"},
-        {id: 4, description: "Hello, React", comment: "Sub"},
-        {id: 5, description: "Hello, React", comment: "Sub"},
-    ]);
-    const [todo, setTodo] = useState<ITodo>({id: null, comment: "", description: ""});
+    const dispatch = useAppDispatch();
     const [inputIsVisible, setInputIsVisible] = useState<boolean>(false);
-
-    const addTodo = (todoAdd: ITodo) => {
-        setTodoList([...todoList, todoAdd]);
-    }
+    const todoListItems = useAppSelector(state => state.todoList.todoListItems);
+    const todoLists = useAppSelector(state => state.todoList.todoLists);
+    const currentTodoList = useAppSelector(state => state.todoList.currentTodoList);
 
     const deleteTodo = (id: number) => {
-        setTodoList([...todoList.filter(todo => todo.id !== id)]);
+        dispatch(deleteTodoFromList(id, currentTodoList.id!));
     }
-
     const changeVisibility = () => {
-        setInputIsVisible(prevState => !prevState);
+        setInputIsVisible(prevState => !prevState)
+    }
+    const saveChanges = (value: string) => {
+        dispatch(addTodoInList(currentTodoList.id!, value));
     }
 
-    const saveChanges = (todo: ITodo) => {
-        addTodo(todo);
+    if (!currentTodoList.id || !todoLists.length) {
+        return (
+            <div className={cl.todoList}>
+                <div className={cl.title}>Выберите один из Todo листов или создайте его</div>
+            </div>
+        )
     }
 
     return (
         <div className={cl.todoList}>
-            <div className={cl.title}>Входящие</div>
-            <ul>
-                {todoList.map(todo => <Todo
-                                            key={todo.id}
-                                            id={todo.id}
-                                            description={todo.description}
-                                            deleteTodo={deleteTodo}
-                                            comment={todo.comment}
-                />)}
-
-            </ul>
+            <div className={cl.title}>{currentTodoList.title}</div>
             {inputIsVisible
-                ? <InputTodo todo={todo} saveChanges={saveChanges} changeVisibility={changeVisibility}/>
+                ? <InputTodo
+                    value={""}
+                    saveChanges={saveChanges}
+                    changeVisibility={changeVisibility}/>
                 : <div className={cl.addTodo} onClick={changeVisibility}>
                     {new IconsSvg().plus()}<span>Добавить задачу</span>
                 </div>
             }
+            <ul>
+                {todoListItems.map(t => <TodoItem
+                                            key={t.id}
+                                            id={t.id}
+                                            value={t.value}
+                                            deleteTodo={deleteTodo}
+                                            completed={t.completed}
+                />)}
+            </ul>
         </div>
     );
 };

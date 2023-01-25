@@ -16,16 +16,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  &_count {
+  &_trash {
     display: flex;
-    justify-content: left;
     align-items: center;
     font-size: 10px;
-    max-width: 40px;
+    max-width: 15px;
+    min-width: 15px;
+    max-height: 15px;
+    min-height: 15px;
     color: rgba(0, 0, 0, .3);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     margin-left: 5px;
   }
 }

@@ -33,3 +33,17 @@
     transition: all 0s linear 0s;
   }
 }
+
+@media (max-width: 500px) {
+  .button {
+    padding: 1px;
+    margin-right: 2px;
+
+    svg {
+      transform: scale(.5);
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+}

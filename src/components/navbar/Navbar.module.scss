@@ -1,8 +1,50 @@
 .navbar {
-  padding: 30px 18px 0;
+  padding: 30px 18px;
   background: rgb(250,250,250);
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 305px;
+  display: flex;
+  flex-direction: column;
+
+  &_footer {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    justify-content: space-between;
+
+    & > button {
+      flex: 0 0 30px;
+    }
+  }
 
   &_list {
     margin: 10px 0;
+    flex: 0 1 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+}
+
+@media (max-width: 1000px) {
+  .navbar {
+    width: 200px;
+  }
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    width: 100%;
+    position: relative;
+    &_list {
+      margin: 10px 0;
+      flex: 0 1 180px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
   }
 }

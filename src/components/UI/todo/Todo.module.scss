@@ -1,25 +1,52 @@
 .todo {
-  display: flex;
-  padding: 5px;
-  align-items: center;
-  border-bottom: 1px solid #f0f0f0;
-  cursor: pointer;
+  padding: 0 5px;
+  label {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+  }
+
+  &_completed {
+    background: rgba(0, 0, 0, .1);
+  }
 
   &:hover &_mode {
     visibility: visible;
   }
 
   input {
+    appearance: none;
+    -webkit-appearance: none;
     align-self: start;
-    border: 1px solid grey;
-    color: grey;
+    background: rgba(0, 0, 0, .3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 0 0 10px;
     min-width: 16px;
     min-height: 16px;
-    overflow: hidden;
+    max-width: 16px;
+    max-height: 16px;
     border-radius: 50%;
     cursor: pointer;
-    margin: 8px 6px 0 -3px;
+    margin: 10px 6px 0 -3px;
+
+    &::after {
+      font-family: "Font Awesome 5 Free";
+      content: "\f00c";
+      font-weight: 900;
+      font-size: 15px;
+      display: none;
+      color: white;
+    }
+    &:checked {
+      background: #5bcd3e;
+    }
+    &:checked::after {
+      display: block;
+    }
   }
   &_value {
     overflow: hidden;
